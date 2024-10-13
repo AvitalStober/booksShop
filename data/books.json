@@ -1,0 +1,142 @@
+[
+    {
+        "id": "1",
+        "title": "The Great Gatsby",
+        "price": 10.99,
+        "action": "reading",
+        "image": "https://example.com/images/gatsby.jpg"
+    },
+    {
+        "id": "2",
+        "title": "To Kill a Mockingbird",
+        "price": 12.99,
+        "action": "reading",
+        "image": "https://example.com/images/mockingbird.jpg"
+    },
+    {
+        "id": "3",
+        "title": "1984",
+        "price": 9.99,
+        "action": "reading",
+        "image": "https://example.com/images/1984.jpg"
+    },
+    {
+        "id": "4",
+        "title": "Pride and Prejudice",
+        "price": 11.99,
+        "action": "reading",
+        "image": "https://example.com/images/pride_and_prejudice.jpg"
+    },
+    {
+        "id": "5",
+        "title": "The Catcher in the Rye",
+        "price": 8.99,
+        "action": "reading",
+        "image": "https://example.com/images/catcher.jpg"
+    },
+    {
+        "id": "6",
+        "title": "The Art of War",
+        "price": 7.99,
+        "action": "reading",
+        "image": "https://example.com/images/art_of_war.jpg"
+    },
+    {
+        "id": "7",
+        "title": "The Joy of Cooking",
+        "price": 25.99,
+        "action": "cooking",
+        "image": "https://example.com/images/joy_of_cooking.jpg"
+    },
+    {
+        "id": "8",
+        "title": "Salt, Fat, Acid, Heat",
+        "price": 18.99,
+        "action": "cooking",
+        "image": "https://example.com/images/salt_fat_acid_heat.jpg"
+    },
+    {
+        "id": "9",
+        "title": "The Science of Good Cooking",
+        "price": 19.99,
+        "action": "cooking",
+        "image": "https://example.com/images/science_of_cooking.jpg"
+    },
+    {
+        "id": "10",
+        "title": "How to Cook Everything",
+        "price": 27.99,
+        "action": "cooking",
+        "image": "https://example.com/images/how_to_cook_everything.jpg"
+    },
+    {
+        "id": "11",
+        "title": "Clean Code",
+        "price": 34.99,
+        "action": "instructions",
+        "image": "https://example.com/images/clean_code.jpg"
+    },
+    {
+        "id": "12",
+        "title": "The Pragmatic Programmer",
+        "price": 32.99,
+        "action": "instructions",
+        "image": "https://example.com/images/pragmatic_programmer.jpg"
+    },
+    {
+        "id": "13",
+        "title": "Head First Design Patterns",
+        "price": 29.99,
+        "action": "instructions",
+        "image": "https://example.com/images/head_first_patterns.jpg"
+    },
+    {
+        "id": "14",
+        "title": "Introduction to Algorithms",
+        "price": 49.99,
+        "action": "instructions",
+        "image": "https://example.com/images/introduction_to_algorithms.jpg"
+    },
+    {
+        "id": "15",
+        "title": "The Power of Habit",
+        "price": 14.99,
+        "action": "reading",
+        "image": "https://example.com/images/power_of_habit.jpg"
+    },
+    {
+        "id": "16",
+        "title": "Atomic Habits",
+        "price": 16.99,
+        "action": "reading",
+        "image": "https://example.com/images/atomic_habits.jpg"
+    },
+    {
+        "id": "17",
+        "title": "Thinking, Fast and Slow",
+        "price": 15.99,
+        "action": "reading",
+        "image": "https://example.com/images/thinking_fast_and_slow.jpg"
+    },
+    {
+        "id": "18",
+        "title": "The Subtle Art of Not Giving a F*ck",
+        "price": 12.99,
+        "action": "reading",
+        "image": "https://example.com/images/subtle_art.jpg"
+    },
+    {
+        "id": "19",
+        "title": "Sapiens: A Brief History of Humankind",
+        "price": 21.99,
+        "action": "reading",
+        "image": "https://example.com/images/sapiens.jpg"
+    },
+    {
+        "id": "20",
+        "title": "Educated",
+        "price": 17.99,
+        "action": "reading",
+        "image": "https://example.com/images/educated.jpg"
+    }
+]
