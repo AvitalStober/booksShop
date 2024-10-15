@@ -1,82 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Store</title>
-    <link rel="stylesheet" href="../css/main.css">
-</head>
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
 
-<body>
+  <body>
     <h1>Book Store</h1>
 
+    <!-- new book -->
     <h2 id="showAddBook">Add a New Book</h2>
     <div class="addBookForm">
-        <div>
-            <label for="newBookTitle">Title:</label>
-            <input type="text" id="newBookTitle" placeholder="Enter book title">
-        </div>
-        <div>
-            <label for="newBookPrice">Price:</label>
-            <input type="number" id="newBookPrice" placeholder="Enter book price" step="0.01">
-        </div>
-        <div>
-            <label for="newBookImage">Image URL:</label>
-            <input type="text" id="newBookImage" placeholder="Enter image URL">
-        </div>
-        <button id="addBookButton">Add Book</button>
+      <div>
+        <label for="newBookTitle">Title:</label>
+        <input type="text" id="newBookTitle" placeholder="Enter book title" />
+      </div>
+      <div>
+        <label for="newBookPrice">Price:</label>
+        <input
+          type="number"
+          id="newBookPrice"
+          placeholder="Enter book price"
+          step="0.01"
+        />
+      </div>
+      <div>
+        <label for="newBookImage">Image URL:</label>
+        <input type="text" id="newBookImage" placeholder="Enter image URL" />
+      </div>
+      <button id="addBookButton">Add Book</button>
     </div>
 
+    <!-- sorting -->
     <div>
-        <label for="sortBy">Sort by:</label>
-        <select id="sortBy">
-            <option value="id">ID</option>
-            <option value="price">Price</option>
-            <option value="title">Title (A-Z)</option>
-        </select>
+      <label for="sortBy">Sort by:</label>
+      <select id="sortBy">
+        <option value="id">ID</option>
+        <option value="price">Price</option>
+        <option value="title">Title (A-Z)</option>
+      </select>
     </div>
-    
 
+    <!-- book list -->
     <table id="mainTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th colspan="3">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-        </tbody>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Price</th>
+          <th colspan="3">Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
     </table>
 
+    <!-- sidebar to show info and update -->
     <div id="sidebar" class="sidebar">
-        <button id="closeSidebar">Close</button>
-        <div class="idRow">
-            <span class="infoTitle">Book ID: </span><span class="infoTitle" id="bookId"></span>
-        </div>
-        <div>
-            <span class="infoTitle">Title: </span><span id="bookTitleDisplay"></span>
-        </div>
-        <div>
-            <span class="infoTitle">Price: </span><span id="bookPriceDisplay"></span>
-        </div>
-        <div>
-            <span class="infoTitle">Image:</span>
-            <img id="bookImageDisplay" class="book-image" />
-        </div>
-        <div>
-            <span class="infoTitle">Rating:</span>
-            <span id="bookRatingDisplay" style="cursor: pointer;"></span>
-            <input type="number" id="bookRatingInput" min="1" max="5" style="display: none;" />
-        </div>        
-        
-        <button id="editButton" style="display: none;">Edit</button>
+      <button id="closeSidebar">Close</button>
+      <div class="idRow">
+        <span class="infoTitle">Book ID: </span
+        ><span class="infoTitle" id="bookId"></span>
+      </div>
+      <div>
+        <span class="infoTitle">Title: </span
+        ><span id="bookTitleDisplay"></span>
+      </div>
+      <div>
+        <span class="infoTitle">Price: </span
+        ><span id="bookPriceDisplay"></span>
+      </div>
+      <div>
+        <span class="infoTitle">Image:</span>
+        <img id="bookImageDisplay" class="book-image" />
+      </div>
+      <div>
+        <span class="infoTitle">Rating:</span>
+        <span id="bookRatingDisplay" style="cursor: pointer"></span>
+        <input
+          type="number"
+          id="bookRatingInput"
+          min="1"
+          max="5"
+          style="display: none"
+        />
+      </div>
+
+      <button id="editButton" style="display: none">Edit</button>
     </div>
 
     <script type="module" src="../js/main.js"></script>
-</body>
-
+  </body>
 </html>

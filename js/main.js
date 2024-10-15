@@ -5,71 +5,34 @@ import data from '../data/books.json' with { type: 'json' };
 let myBooks = JSON.parse(localStorage.getItem('books')) || [];
 console.log(myBooks);
 
+// copy the books from json to localStorage
 if (myBooks.length === 0) {
-    myBooks = data; // Load from JSON
-    localStorage.setItem("books", JSON.stringify(myBooks)); // Save to localStorage
+    myBooks = data;
+    localStorage.setItem("books", JSON.stringify(myBooks));
 }
 
+// sorting
 const sortBooks = (books, criterion) => {
     switch (criterion) {
         case "price":
-            return books.sort((a, b) => a.price - b.price);
+            return books.sort((a, b) => a.price - b.price); // by price
         case "title":
-            return books.sort((a, b) => a.title.localeCompare(b.title)); // מיון לפי כותרת
+            return books.sort((a, b) => a.title.localeCompare(b.title)); // by title
         default:
-            return books.sort((a, b) => a.id - b.id); // ברירת מחדל לפי ID
+            return books.sort((a, b) => a.id - b.id); // by id
     }
 };
 
-// Function to display books in the table
-// const displayBooks = (books) => {
-//     const tableBody = document.getElementById("mainTable").getElementsByTagName('tbody')[0];
-//     tableBody.innerHTML = ''; // Clear the table content before adding new data
+document.getElementById("sortBy").addEventListener("change", (event) => {
+    const sortedBooks = sortBooks(myBooks, event.target.value);
+    displayBooks(sortedBooks);
+});
 
-//     books.forEach(book => {
-//         const tableLine = document.createElement("tr");
 
-//         const idCell = document.createElement("td");
-//         idCell.textContent = book.id;
-//         tableLine.appendChild(idCell);
-
-//         const titleCell = document.createElement("td");
-//         titleCell.textContent = book.title;
-//         tableLine.appendChild(titleCell);
-
-//         const priceCell = document.createElement("td");
-//         priceCell.textContent = `$${book.price.toFixed(2)}`;
-//         tableLine.appendChild(priceCell);
-
-//         // Eye icon
-//         const actionCellShow = document.createElement("td");
-//         actionCellShow.innerHTML = '&#128065;'; // Eye icon
-//         actionCellShow.classList.add("tableImg");
-//         actionCellShow.addEventListener("click", () => showBookDetails(book));
-//         tableLine.appendChild(actionCellShow);
-
-//         // Pencil icon
-//         const actionCellUpdate = document.createElement("td");
-//         actionCellUpdate.innerHTML = '&#9999;'; // Pencil icon
-//         actionCellUpdate.classList.add("tableImg");
-//         actionCellUpdate.addEventListener("click", () => editBookDetails(book));
-//         tableLine.appendChild(actionCellUpdate);
-
-//         // Garbage icon
-//         const actionCellDelete = document.createElement("td");
-//         actionCellDelete.innerHTML = '&#128465;'; // Garbage icon
-//         actionCellDelete.classList.add("tableImg");
-//         actionCellDelete.addEventListener("click", () => deleteBook(book.id));
-//         tableLine.appendChild(actionCellDelete);
-
-//         // Add the row to the table body
-//         tableBody.appendChild(tableLine);
-//     });
-// };
-
+// make the books table
 const displayBooks = (books) => {
     const tableBody = document.getElementById("mainTable").getElementsByTagName('tbody')[0];
-    tableBody.innerHTML = ''; // נקה את התוכן הקיים
+    tableBody.innerHTML = ''; 
 
     books.forEach(book => {
         const tableLine = document.createElement("tr");
@@ -86,92 +49,81 @@ const displayBooks = (books) => {
         priceCell.textContent = `$${book.price.toFixed(2)}`;
         tableLine.appendChild(priceCell);
 
-        // אייקון עין
+        // eye icon
         const actionCellShow = document.createElement("td");
-        actionCellShow.innerHTML = '&#128065;'; // אייקון עין
+        actionCellShow.innerHTML = '&#128065;';
         actionCellShow.classList.add("tableImg");
         actionCellShow.addEventListener("click", () => showBookDetails(book));
         tableLine.appendChild(actionCellShow);
 
-        // אייקון עיפרון
+        // update icon
         const actionCellUpdate = document.createElement("td");
-        actionCellUpdate.innerHTML = '&#9999;'; // אייקון עיפרון
+        actionCellUpdate.innerHTML = '&#9999;';
         actionCellUpdate.classList.add("tableImg");
         actionCellUpdate.addEventListener("click", () => editBookDetails(book));
         tableLine.appendChild(actionCellUpdate);
 
-        // אייקון פח אשפה
+        // delete icon
         const actionCellDelete = document.createElement("td");
-        actionCellDelete.innerHTML = '&#128465;'; // אייקון פח אשפה
+        actionCellDelete.innerHTML = '&#128465;';
         actionCellDelete.classList.add("tableImg");
         actionCellDelete.addEventListener("click", () => deleteBook(book.id));
         tableLine.appendChild(actionCellDelete);
 
-        // הוסף את השורה לגוף הטבלה
         tableBody.appendChild(tableLine);
     });
 };
 
-document.getElementById("sortBy").addEventListener("change", (event) => {
-    const sortedBooks = sortBooks(myBooks, event.target.value);
-    displayBooks(sortedBooks);
-});
-
-// displayBooks(sortBooks(myBooks, "id"));
-
+// sidebar with book details
 const showBookDetails = (book) => {
     document.getElementById("bookId").textContent = book.id;
     document.getElementById("bookTitleDisplay").textContent = book.title;
     document.getElementById("bookPriceDisplay").textContent = `$${book.price.toFixed(2)}`;
-    document.getElementById("bookImageDisplay").src = book.image; // Load the book image
+    document.getElementById("bookImageDisplay").src = book.image; 
 
-    // הצג דירוג קיים או טקסט "לא דורג"
     const bookRatingDisplay = document.getElementById("bookRatingDisplay");
     bookRatingDisplay.textContent = book.rating ? book.rating : "Not rated";
 
     const ratingInput = document.getElementById("bookRatingInput");
-    ratingInput.value = book.rating || ''; // הגדר את שדה הקלט לדירוג הנוכחי
+    ratingInput.value = book.rating || '';
 
-    // אפשר עריכה על ידי לחיצה
+    // change the rating to update availble
     bookRatingDisplay.onclick = () => {
-        bookRatingDisplay.style.display = "none"; // הסתר את התצוגה
-        ratingInput.style.display = "block"; // הראה את שדה הקלט
-        ratingInput.focus(); // העבר את הפוקוס לשדה הקלט
+        bookRatingDisplay.style.display = "none";
+        ratingInput.style.display = "block";
+        ratingInput.focus();
     };
 
-    // עדכון הדירוג
+    // rating updating
     ratingInput.onchange = () => {
         const newRating = parseInt(ratingInput.value);
         if (newRating >= 1 && newRating <= 5) {
-            // עדכן את הדירוג בספר
+            
             book.rating = newRating;
 
-            // עדכן את localStorage
+            // update localStorage
             let books = JSON.parse(localStorage.getItem('books'));
             const bookIndex = books.findIndex(b => b.id === book.id);
             if (bookIndex !== -1) {
                 books[bookIndex].rating = newRating;
-                localStorage.setItem('books', JSON.stringify(books)); // שמור את הנתונים המעודכנים
+                localStorage.setItem('books', JSON.stringify(books)); 
             }
 
-            // עדכן את התצוגה
             bookRatingDisplay.textContent = newRating;
-            ratingInput.style.display = "none"; // הסתר את שדה הקלט
-            bookRatingDisplay.style.display = "inline"; // הראה את התצוגה מחדש
+            ratingInput.style.display = "none"; 
+            bookRatingDisplay.style.display = "inline";
         } else {
             alert("Please enter a rating between 1 and 5.");
         }
     };
 
-    // document.getElementById("sidebar").classList.add("open");
     document.getElementById("sidebar").classList.add("open");
     document.body.classList.add("sidebar-open"); 
 };
 
-
 const closeSidebar = () => {
     document.getElementById("sidebar").classList.remove("open");
-    document.body.classList.remove("sidebar-open"); // הסר את הכיתה מהגוף
+    document.body.classList.remove("sidebar-open");
 };
 
 document.getElementById("closeSidebar").addEventListener("click", closeSidebar);
@@ -230,7 +182,6 @@ document.getElementById("closeSidebar").addEventListener("click", () => {
 });
 
 // Initial display of books
-// displayBooks(myBooks);
 displayBooks(sortBooks(myBooks, "id"));
 
 const form = document.getElementsByClassName("addBookForm");
@@ -240,38 +191,6 @@ document.getElementById("showAddBook").addEventListener("click", () => {
     form[0].style.display === "block" ? form[0].style.display = "none" : form[0].style.display = "block";
 })
 
-// document.getElementById("addBookButton").addEventListener("click", () => {
-//     const title = document.getElementById("newBookTitle").value;
-//     const price = parseFloat(document.getElementById("newBookPrice").value);
-//     const image = document.getElementById("newBookImage").value;
-
-//     if (title && !isNaN(price) && image) {
-//         const newBook = {
-//             id: (myBooks.length + 1).toString(), // יצירת ID חדש
-//             title: title,
-//             price: price,
-//             image: image,
-//             rating: null,
-//             comment: ""
-//         };
-
-//         myBooks.push(newBook); // הוסף את הספר לרשימה
-//         localStorage.setItem('books', JSON.stringify(myBooks)); // עדכון localStorage
-//         displayBooks(myBooks); // עדכון התצוגה
-
-//         // ניקוי השדות בטופס
-//         document.getElementById("newBookTitle").value = '';
-//         document.getElementById("newBookPrice").value = '';
-//         document.getElementById("newBookImage").value = '';
-
-//         form[0].style.display = "none";
-//     } else {
-//         alert("Please fill in all fields correctly.");
-//     }
-// });
-
-
-
 document.getElementById("addBookButton").addEventListener("click", () => {
     const title = document.getElementById("newBookTitle").value;
     const price = parseFloat(document.getElementById("newBookPrice").value);
@@ -279,7 +198,7 @@ document.getElementById("addBookButton").addEventListener("click", () => {
 
     if (title && !isNaN(price) && image) {
         const newBook = {
-            id: (myBooks.length + 1).toString(), // יצירת ID חדש
+            id: (myBooks.length + 1).toString(), // calculate the id
             title: title,
             price: price,
             image: image,
@@ -287,16 +206,16 @@ document.getElementById("addBookButton").addEventListener("click", () => {
             comment: ""
         };
 
-        myBooks.push(newBook); // הוסף את הספר לרשימה
-        localStorage.setItem('books', JSON.stringify(myBooks)); // עדכון localStorage
+        myBooks.push(newBook);
+        localStorage.setItem('books', JSON.stringify(myBooks));
 
-        // קבלת קריטריון המיון הנוכחי
+        // get current sorting
         const sortBy = document.getElementById("sortBy").value;
-        const sortedBooks = sortBooks(myBooks, sortBy); // מיון מחדש לפי הקריטריון הנוכחי
+        const sortedBooks = sortBooks(myBooks, sortBy); 
 
-        displayBooks(sortedBooks); // עדכון התצוגה
+        displayBooks(sortedBooks); 
 
-        // ניקוי השדות בטופס
+        // clean the form
         document.getElementById("newBookTitle").value = '';
         document.getElementById("newBookPrice").value = '';
         document.getElementById("newBookImage").value = '';
